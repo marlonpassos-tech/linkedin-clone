@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn IBMS - Vaga Engenheiro(a) de Computação Júnior</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        linkedin: {
+                            blue: '#0a66c2',
+                            hoverBlue: '#004182',
+                            bg: '#f4f2ee',
+                            cardBg: '#ffffff',
+                            border: '#e0e0e0',
+                            textMain: 'rgba(0, 0, 0, 0.9)',
+                            textSecondary: 'rgba(0, 0, 0, 0.6)'
+                        },
+                        ibms: {
+                            navy: '#0b192c',
+                            blue: '#1e3e62',
+                            accent: '#ffb703',
+                            green: '#2ec4b6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f2ee;
+            color: rgba(0, 0, 0, 0.9);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .linkedin-shadow {
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+        .animate-pop {
+            animation: pop 0.25s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- BARRA SUPERIOR DE APRESENTAÇÃO ACADÊMICA E CONTROLES DA VAGA IBMS -->
+    <div class="bg-slate-950 text-white text-xs py-2 px-4 sticky top-0 z-50 shadow-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="bg-amber-500 text-slate-950 font-black px-2 py-0.5 rounded text-[10px] tracking-wider uppercase">IBMS RH</span>
+                <span class="font-semibold text-slate-200">Apresentação da Vaga: Engenheiro(a) de Computação Júnior</span>
+            </div>
+            <div class="flex items-center flex-wrap gap-2">
+                <span class="text-slate-400 hidden lg:inline">Alternar Banner Visual:</span>
+                <button onclick="switchBanner('banner1')" id="btn-banner1" class="bg-blue-900 hover:bg-blue-800 text-amber-300 font-medium px-2.5 py-1 rounded text-xs transition border border-blue-700 flex items-center gap-1">
+                    <i class="fa-solid fa-microchip"></i> Banner 1: Silício Brasileiro
+                </button>
+                <button onclick="switchBanner('banner2')" id="btn-banner2" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded text-xs transition border border-slate-700 flex items-center gap-1">
+                    <i class="fa-solid fa-image"></i> Banner 2: Imagem Original
+                </button>
+                <button onclick="openModal()" class="bg-linkedin-blue hover:bg-linkedin-hoverBlue text-white px-3 py-1 rounded text-xs font-semibold transition ml-2 flex items-center gap-1">
+                    <i class="fa-solid fa-pen-to-square"></i> Editar Vaga
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LINKEDIN HEADER OFICIAL -->
+    <header class="bg-white border-b border-gray-200 sticky top-9 z-40">
+        <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="#" class="text-linkedin-blue text-3xl font-bold flex items-center">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <div class="relative hidden sm:block">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-500 text-sm"></i>
+                    <input type="text" placeholder="Pesquisar IBMS, vagas de hardware..." class="bg-slate-100 hover:bg-slate-200 focus:bg-white text-sm pl-9 pr-4 py-1.5 rounded w-64 focus:outline-none focus:ring-2 focus:ring-slate-400 transition">
+                </div>
+            </div>
+
+            <nav class="flex items-center space-x-1 sm:space-x-6 text-gray-600">
+                <a href="#" class="flex flex-col items-center text-black border-b-2 border-black pb-1 px-2">
+                    <i class="fa-solid fa-house-chimney text-lg"></i>
+                    <span class="text-[11px] font-normal">Início</span>
+                </a>
+                <a href="#" class="flex flex-col items-center hover:text-black px-2 transition hidden xs:flex">
+                    <i class="fa-solid fa-user-group text-lg"></i>
+                    <span class="text-[11px]">Minha rede</span>
+                </a>
+                <a href="#" class="flex flex-col items-center hover:text-black px-2 transition relative">
+                    <i class="fa-solid fa-briefcase text-lg"></i>
+                    <span class="text-[11px]">Vagas</span>
+                    <span class="absolute top-0 right-3 bg-linkedin-blue text-white text-[9px] font-bold px-1 rounded-full">1</span>
+                </a>
+                <a href="#" class="flex flex-col items-center hover:text-black px-2 transition">
+                    <i class="fa-solid fa-comment-dots text-lg"></i>
+                    <span class="text-[11px]">Mensagens</span>
+                </a>
+                <a href="#" class="flex flex-col items-center hover:text-black px-2 transition relative">
+                    <i class="fa-solid fa-bell text-lg"></i>
+                    <span class="text-[11px]">Notificações</span>
+                    <span class="absolute top-0 right-3 bg-red-600 text-white text-[9px] font-bold px-1 rounded-full">5</span>
+                </a>
+                
+                <div class="h-8 w-px bg-gray-200 mx-1 hidden sm:block"></div>
+
+                <a href="#" class="flex flex-col items-center hover:text-black px-1">
+                    <div class="w-6 h-6 bg-slate-900 text-amber-400 font-extrabold text-[10px] rounded flex items-center justify-center border border-slate-700">
+                        IBMS
+                    </div>
+                    <span class="text-[11px] flex items-center mt-0.5">
+                        Empresa <i class="fa-solid fa-caret-down ml-0.5 text-[9px]"></i>
+                    </span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL DO FEED -->
+    <main class="max-w-7xl mx-auto px-2 sm:px-4 py-6 grid grid-cols-1 md:grid-cols-12 gap-6 flex-grow">
+        
+        <!-- COLUNA ESQUERDA -->
+        <aside class="md:col-span-3 space-y-4">
+            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden linkedin-shadow">
+                <div class="h-20 bg-gradient-to-r from-slate-950 via-blue-950 to-indigo-950 relative p-2">
+                    <div class="absolute -bottom-6 left-4 border-2 border-white rounded-md bg-slate-900 p-1 shadow-md">
+                        <div class="w-12 h-12 bg-slate-950 text-amber-400 font-black text-sm flex flex-col items-center justify-center rounded leading-none border border-amber-500/30">
+                            <span>IBMS</span>
+                            <span class="text-[8px] text-blue-300 font-normal">CHIPS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-8 pb-4 px-4">
+                    <h1 class="font-bold text-gray-900 text-base leading-snug hover:underline cursor-pointer flex items-center gap-1">
+                        IBMS – Indústria Brasileira de Manufatura de Semicondutores
+                        <i class="fa-solid fa-circle-check text-linkedin-blue text-xs" title="Conta Verificada"></i>
+                    </h1>
+                    <p class="text-xs text-gray-600 mt-1">Desenvolvimento, fabricação e comercialização de circuitos integrados e microprocessadores.</p>
+                    <p class="text-[11px] text-gray-500 mt-2 flex items-center">
+                        <i class="fa-solid fa-location-dot mr-1 text-slate-400"></i> Boituva – SP (Sorocaba, Tatuí e Itapetininga)
+                    </p>
+                    <p class="text-[11px] text-gray-400 mt-0.5">18.420 seguidores • 450 colaboradores</p>
+                </div>
+                
+                <div class="border-t border-b border-gray-100 bg-emerald-50/70 p-3">
+                    <div class="flex items-start space-x-2">
+                        <i class="fa-solid fa-shield-check text-emerald-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <p class="text-xs font-bold text-emerald-950">Cotas PCD: 100% Cumpridas</p>
+                            <p class="text-[11px] text-emerald-800 leading-tight mt-0.5">
+                                A IBMS cumpre integralmente a legislação industrial para PCDs. Vaga aberta a todo o público qualificado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 text-xs space-y-2">
+                    <div class="flex justify-between font-medium text-gray-600 hover:bg-gray-50 p-1.5 rounded cursor-pointer">
+                        <span>Visualizações da página</span>
+                        <span class="text-linkedin-blue font-bold">3.840</span>
+                    </div>
+                    <div class="flex justify-between font-medium text-gray-600 hover:bg-gray-50 p-1.5 rounded cursor-pointer">
+                        <span>Candidaturas na semana</span>
+                        <span class="text-linkedin-blue font-bold">142</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-gray-200 p-3 linkedin-shadow text-xs space-y-2">
+                <p class="font-bold text-gray-800 mb-1">Tecnologias da Foundry IBMS</p>
+                <div class="flex flex-wrap gap-1 text-[11px]">
+                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Microeletrônica</span>
+                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Sistemas Embarcados</span>
+                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">FPGA / ARM</span>
+                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Python / C++</span>
+                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Verilog / VHDL</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- COLUNA CENTRAL -->
+        <section class="md:col-span-6 space-y-4">
+            <div class="bg-white rounded-lg border border-gray-200 p-4 linkedin-shadow">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-slate-900 text-amber-400 font-black text-xs flex items-center justify-center rounded border border-slate-700">
+                        IBMS
+                    </div>
+                    <button onclick="openModal()" class="flex-grow text-left bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-600 text-xs sm:text-sm font-medium py-2.5 px-4 rounded-full transition">
+                        Nova publicação de vaga técnica IBMS...
+                    </button>
+                </div>
+                <div class="flex justify-between items-center mt-3 pt-2 border-t border-gray-100 text-xs font-semibold text-gray-600">
+                    <button onclick="openModal()" class="flex items-center space-x-1.5 hover:bg-gray-100 p-2 rounded text-blue-600">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span class="text-gray-600">Anunciar Vaga</span>
+                    </button>
+                    <button onclick="switchBanner('banner1')" class="flex items-center space-x-1.5 hover:bg-gray-100 p-2 rounded text-amber-600">
+                        <i class="fa-solid fa-image"></i>
+                        <span class="text-gray-600">Banner Silício</span>
+                    </button>
+                    <button onclick="switchBanner('banner2')" class="flex items-center space-x-1.5 hover:bg-gray-100 p-2 rounded text-emerald-600">
+                        <i class="fa-solid fa-file-image"></i>
+                        <span class="text-gray-600">Imagem Original</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="feed-container" class="space-y-4">
+                <!-- O post gerado pelo JavaScript é inserido aqui -->
+            </div>
+
+        </section>
+
+        <!-- COLUNA DIREITA -->
+        <aside class="md:col-span-3 space-y-4">
+            <div class="bg-white rounded-lg border border-gray-200 p-4 linkedin-shadow space-y-4">
+                <div class="flex items-center justify-between border-b pb-2">
+                    <h2 class="font-bold text-gray-900 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-chalkboard-user text-linkedin-blue"></i>
+                        Recrutamento & Seleção
+                    </h2>
+                    <span class="bg-blue-100 text-linkedin-blue font-bold px-1.5 py-0.5 rounded text-[10px]">IBMS RH</span>
+                </div>
+
+                <div class="space-y-1.5 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-[10px]">1</span>
+                        <h3 class="font-bold text-slate-900 text-xs">Meio de Recrutamento: Externo</h3>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-relaxed pt-1">
+                        <strong>Justificativa Técnica:</strong> O método escolhido foi o <em>Recrutamento Externo</em>. O recrutamento interno não se aplicaria pois trata-se de uma vaga de nível <strong>Júnior</strong> (porta de entrada na engenharia).
+                    </p>
+                </div>
+
+                <div class="space-y-1.5 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-5 h-5 bg-linkedin-blue text-white rounded-full flex items-center justify-center font-bold text-[10px]">2</span>
+                        <h3 class="font-bold text-slate-900 text-xs">Meio de Divulgação: LinkedIn</h3>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-relaxed pt-1">
+                        <strong>Justificativa Estratégica:</strong> O LinkedIn é a rede própria de conteúdo corporativo que atrai profissionais experientes e novos engenheiros, estimulando o compartilhamento.
+                    </p>
+                </div>
+
+                <div class="space-y-1.5 bg-emerald-50/80 p-3 rounded-lg border border-emerald-200">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-5 h-5 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-[10px]">3</span>
+                        <h3 class="font-bold text-emerald-950 text-xs">Cotas PCD (100% Cumpridas)</h3>
+                    </div>
+                    <p class="text-[11px] text-emerald-900 leading-relaxed pt-1">
+                        A IBMS cumpre integralmente a legislação de cotas PCD para a indústria fabril. Divulgação aberta para atração de talentos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center text-[11px] text-gray-500 space-y-1">
+                <p class="font-semibold text-slate-700">IBMS – Indústria Brasileira de Manufatura de Semicondutores</p>
+                <p>Boituva – SP • Sorocaba • Tatuí • Itapetininga</p>
+            </div>
+        </aside>
+    </main>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="postModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-2 sm:p-4 hidden transition-opacity duration-200">
+        <div class="bg-white rounded-xl w-full max-w-3xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-slate-900 text-white">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-slate-950 text-amber-400 font-black text-xs flex items-center justify-center rounded border border-amber-500/40">
+                        IBMS
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm">Editar Publicação no LinkedIn - IBMS</h3>
+                        <p class="text-[11px] text-slate-300">Engenheiro(a) de Computação Júnior | Boituva-SP</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-2 rounded-full transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-4 custom-scrollbar flex-grow">
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 flex items-start space-x-2">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-base mt-0.5"></i>
+                    <div>
+                        <span class="font-bold">Modo Apresentação:</span> Altere o texto da vaga ou troque o banner visual abaixo para demonstrar o post no LinkedIn.
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Texto da Publicação:</label>
+                    <textarea id="postContent" rows="12" 
+                        class="w-full text-xs sm:text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-linkedin-blue p-3 border border-gray-300 rounded-lg resize-none font-sans leading-relaxed"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-2">Selecione a Imagem / Banner do Anúncio:</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <button onclick="setModalBanner('banner1')" id="modal-opt-banner1" class="border border-gray-300 rounded-lg p-2 text-left bg-slate-900 text-white hover:bg-slate-800 transition">
+                            <div class="font-bold text-xs text-amber-400 flex items-center gap-1">
+                                <i class="fa-solid fa-microchip"></i> Banner 1
+                            </div>
+                            <p class="text-[10px] text-slate-300 mt-1">"Faça história no silício brasileiro - Foundry IBMS"</p>
+                        </button>
+                        <button onclick="setModalBanner('banner2')" id="modal-opt-banner2" class="border-2 border-linkedin-blue rounded-lg p-2 text-left bg-slate-900 text-white hover:bg-slate-800 transition">
+                            <div class="font-bold text-xs text-emerald-400 flex items-center gap-1">
+                                <i class="fa-solid fa-file-image"></i> Imagem Original
+                            </div>
+                            <p class="text-[10px] text-slate-300 mt-1">Arquivo: post_IBMS_vaga_mesclado.png</p>
+                        </button>
+                        <button onclick="setModalBanner('none')" id="modal-opt-none" class="border border-gray-300 rounded-lg p-2 text-left bg-gray-50 hover:bg-gray-100 transition flex flex-col justify-center items-center text-gray-500">
+                            <i class="fa-solid fa-ban text-base"></i>
+                            <span class="text-[11px] font-semibold mt-1">Apenas Texto</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-3 border-t border-gray-200 flex items-center justify-between bg-gray-50">
+                <div class="flex items-center space-x-2 text-gray-500 text-sm">
+                    <button onclick="addEmoji('🚀')" class="hover:text-linkedin-blue p-1.5 rounded hover:bg-gray-200">🚀</button>
+                    <button onclick="addEmoji('💻')" class="hover:text-linkedin-blue p-1.5 rounded hover:bg-gray-200">💻</button>
+                    <button onclick="addEmoji('⚡')" class="hover:text-linkedin-blue p-1.5 rounded hover:bg-gray-200">⚡</button>
+                    <button onclick="addHashtag('#IBMS')" class="hover:text-linkedin-blue p-1.5 rounded hover:bg-gray-200 font-bold text-xs">#IBMS</button>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="closeModal()" class="px-4 py-1.5 rounded-full text-xs font-semibold text-gray-600 hover:bg-gray-200">Cancelar</button>
+                    <button onclick="publishPost()" class="bg-linkedin-blue hover:bg-linkedin-hoverBlue text-white px-6 py-1.5 rounded-full text-xs font-semibold shadow transition">
+                        Atualizar Publicação
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ibmsJobText = `🚨 VAGA ABERTA NA IBMS | Indústria Brasileira de Manufatura de Semicondutores ⚡🏭
+
+🚀 Engenheiro(a) de Computação Júnior | Hardware, Sistemas Embarcados e Inovação
+📍 Boituva – SP (Abrangência: Sorocaba, Tatuí e Itapetininga)
+💼 Engenharia / TI e Produção | 📌 Júnior (CLT)
+
+♿ Declaração de Diversidade & Cotas:
+Cumprimos integralmente a cota legal de Pessoas com Deficiência (PCD) do setor industrial. Oportunidade aberta a todo o público interessado em microeletrônica!
+
+---
+
+🏢 SOBRE A VAGA E A IBMS
+Seu lugar é na foundry brasileira! A IBMS integra engenharia, TI e microeletrônica para fabricar semicondutores e processadores. Buscamos um(a) Engenheiro(a) Júnior para desenvolver, validar e sustentar soluções tecnológicas, aprimorando sistemas e equipamentos industriais em nossa linha de frente.
+
+---
+
+📋 ATIVIDADES DO DIA A DIA:
+• Desenvolver e integrar sistemas computacionais (hardware, software e embarcados).
+• Implementar e validar projetos de circuitos digitais, placas e microcontroladores.
+• Criar soluções de automação em Python e C/C++ para otimizar testes industriais.
+• Diagnosticar e analisar falhas em hardware/software, propondo melhorias técnicas.
+• Apoiar a sustentação de sistemas internos para garantir alto desempenho.
+• Pesquisar novas tecnologias, avaliando ferramentas de engenharia e criando relatórios técnicos.
+
+---
+
+🎯 REQUISITOS E QUALIFICAÇÕES:
+• Superior (completo ou cursando) em Eng. de Computação, Elétrica, Eletrônica, Software ou afins.
+• Base sólida em arquitetura de computadores e eletrônica (analógica/digital).
+• Domínio em programação: Python, C e/ou C++.
+• Noções de sistemas embarcados, microcontroladores e integração hardware/software.
+• Familiaridade com testes, diagnósticos, bancos de dados e Sistemas Operacionais.
+• Perfil analítico, proativo e com excelente comunicação para atuação multidisciplinar.
+
+🌟 DIFERENCIAIS:
+• Linguagens HDL (Verilog/VHDL) e ferramentas EDA/CAD (KiCad, Altium, Cadence, Synopsys).
+• Vivência com ARM, RISC-V, FPGA e protocolos (I2C, SPI, UART, USB, CAN).
+• Conhecimento em metodologias de teste de semicondutores (JTAG, BIST, DFT).
+• Inglês técnico.
+
+---
+
+🎁 O QUE OFERECEMOS:
+👨‍🏫 Mentoria direta com engenheiros seniores
+🎓 Bolsa de até 70% para pós-graduação
+🏦 Previdência Privada (contrapartida de até 100%)
+🏥 Plano de Saúde (sem carência)
+💰 Participação nos Lucros e Resultados (PLR)
+🚀 Ambiente inovador e de alto impacto na tecnologia nacional
+
+💬 Candidate-se diretamente pelo LinkedIn ou acompanhe nossas vagas nas redes oficiais.
+
+#IBMS #EngenhariaDeComputação #Hardware #Software #SistemasEmbarcados #Microeletrônica #Semicondutores #InovaçãoTecnológica #VagasEngenharia`;
+
+        const bannersSVG = {
+            'banner1': `
+                <div class="w-full bg-slate-950 text-white p-4 sm:p-6 relative overflow-hidden font-sans border-t border-b border-slate-800">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                    
+                    <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                        <div class="md:col-span-7 space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-amber-400 text-slate-950 font-black px-2 py-0.5 rounded text-[10px] tracking-wider uppercase">IBMS</span>
+                                <span class="text-[11px] text-slate-300 font-medium">Indústria Brasileira de Manufatura de Semicondutores</span>
+                            </div>
+                            
+                            <span class="inline-block border border-amber-400/60 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-semibold">
+                                Estamos contratando
+                            </span>
+
+                            <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white leading-tight">
+                                Faça história no<br><span class="text-amber-400">silício brasileiro.</span>
+                            </h2>
+
+                            <div class="border-l-2 border-blue-500 pl-3 py-0.5">
+                                <p class="text-sm font-bold text-blue-200">Engenheiro(a) de Computação Júnior</p>
+                                <p class="text-[11px] text-slate-300">Teste de chips, automação em Python/C++ e análise de falhas.</p>
+                            </div>
+
+                            <ul class="text-[11px] space-y-1 text-slate-200 font-medium pt-1">
+                                <li class="flex items-center"><i class="fa-solid fa-square text-amber-400 text-[8px] mr-2"></i> Bolsa de até 70% para pós-graduação</li>
+                                <li class="flex items-center"><i class="fa-solid fa-square text-amber-400 text-[8px] mr-2"></i> Previdência com contrapartida de até 100%</li>
+                                <li class="flex items-center"><i class="fa-solid fa-square text-amber-400 text-[8px] mr-2"></i> Plano de saúde sem carência e PLR</li>
+                                <li class="flex items-center"><i class="fa-solid fa-square text-amber-400 text-[8px] mr-2"></i> Mentoria direta com engenheiros seniores</li>
+                            </ul>
+
+                            <div class="pt-2 flex items-center justify-between">
+                                <span class="bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded text-xs">
+                                    Candidate-se no LinkedIn
+                                </span>
+                                <span class="text-[10px] text-slate-400 text-right">
+                                    <strong>Boituva-SP</strong><br>Sorocaba, Tatuí e Itapetininga
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-5 flex justify-center items-center">
+                            <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full border-4 border-blue-950 bg-slate-900 p-2 shadow-2xl flex items-center justify-center">
+                                <div class="w-full h-full rounded-full grid grid-cols-8 gap-0.5 bg-blue-900/40 p-1 overflow-hidden">
+                                    ${Array(64).fill(0).map((_, i) => `
+                                        <div class="${i === 27 ? 'bg-amber-400 animate-pulse shadow-lg shadow-amber-400' : 'bg-blue-600/30'} rounded-[1px]"></div>
+                                    `).join('')}
+                                </div>
+                                <div class="absolute top-12 right-2 bg-slate-950 text-amber-300 border border-amber-400/50 text-[9px] font-bold px-2 py-1 rounded shadow-md flex items-center gap-1">
+                                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full"></div>
+                                    Seu lugar na foundry brasileira
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            'banner2': `
+                <div class="w-full border-t border-gray-200">
+                    <img src="post_IBMS_vaga_mesclado.png" alt="Banner Vaga Engenheiro(a) de Computação Júnior - IBMS" class="w-full h-auto block">
+                </div>
+            `,
+            'none': ''
+        };
+
+        let activeBannerKey = 'banner2';
+        let isLiked = false;
+        let likeCount = 89;
+        let commentsList = [
+            { name: "Prof. Henrique Silva", title: "Coordenador de Engenharia de Computação", text: "Excelente oportunidade para nossos recém-formados entrarem diretamente na indústria de semicondutores do Brasil!", time: "25 min" },
+            { name: "Mariana Costa", title: "Engenheira de Sistemas Embarcados", text: "Orgulho de ver a IBMS fortalecendo a fabricação nacional de chips em Boituva! Recomendo demais a empresa.", time: "10 min" }
+        ];
+
+        window.onload = function() {
+            document.getElementById('postContent').value = ibmsJobText;
+            switchBanner('banner2'); 
+        };
+
+        function formatPostText(rawText) {
+            let safeText = rawText.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            safeText = safeText.replace(/(#[a-zA-Z0-9À-ú]+)/g, '<span class="text-linkedin-blue font-bold hover:underline cursor-pointer">$1</span>');
+            safeText = safeText.replace(/(♿ Declaração de Diversidade & Cotas:[\s\S]*?qualificado interessado em microeletrônica!)/gi, '<div class="bg-emerald-50 border-l-4 border-emerald-600 p-2.5 rounded-r my-2 text-emerald-950 font-medium text-xs">$1</div>');
+            return safeText.replace(/\n/g, '<br>');
+        }
+
+        function switchBanner(key) {
+            activeBannerKey = key;
+            const b1 = document.getElementById('btn-banner1');
+            const b2 = document.getElementById('btn-banner2');
+
+            if (key === 'banner1') {
+                b1.className = "bg-blue-900 hover:bg-blue-800 text-amber-300 font-bold px-2.5 py-1 rounded text-xs transition border border-blue-700 flex items-center gap-1";
+                b2.className = "bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded text-xs transition border border-slate-700 flex items-center gap-1";
+            } else if (key === 'banner2') {
+                b1.className = "bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded text-xs transition border border-slate-700 flex items-center gap-1";
+                b2.className = "bg-emerald-900 hover:bg-emerald-800 text-emerald-300 font-bold px-2.5 py-1 rounded text-xs transition border border-emerald-700 flex items-center gap-1";
+            }
+
+            publishPost();
+        }
+
+        function setModalBanner(key) {
+            activeBannerKey = key;
+            document.querySelectorAll('#modal-opt-banner1, #modal-opt-banner2, #modal-opt-none').forEach(btn => {
+                btn.classList.remove('border-2', 'border-linkedin-blue');
+                btn.classList.add('border-gray-300');
+            });
+            const selected = document.getElementById(`modal-opt-${key}`);
+            if (selected) {
+                selected.classList.remove('border-gray-300');
+                selected.classList.add('border-2', 'border-linkedin-blue');
+            }
+        }
+
+        function publishPost() {
+            const content = document.getElementById('postContent').value.trim();
+            if (!content) return;
+
+            const formattedText = formatPostText(content);
+            const bannerHTML = bannersSVG[activeBannerKey] || '';
+
+            const feedContainer = document.getElementById('feed-container');
+            feedContainer.innerHTML = `
+                <article class="bg-white rounded-lg border border-gray-200 linkedin-shadow overflow-hidden transition-all duration-300">
+                    <div class="p-4 flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-slate-950 text-amber-400 font-black text-sm flex flex-col items-center justify-center rounded border border-amber-500/40 shadow-sm">
+                                <span>IBMS</span>
+                                <span class="text-[7px] text-blue-300 font-normal">CHIPS</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-1">
+                                    <h2 class="font-bold text-gray-900 text-sm hover:text-linkedin-blue hover:underline cursor-pointer">IBMS – Indústria Brasileira de Manufatura de Semicondutores</h2>
+                                    <i class="fa-solid fa-circle-check text-linkedin-blue text-xs" title="Conta Verificada"></i>
+                                </div>
+                                <p class="text-[11px] text-gray-500">18.420 seguidores • Indústria de Microeletrônica</p>
+                                <p class="text-[11px] text-gray-400 flex items-center mt-0.5">
+                                    <span>Agora</span>
+                                    <span class="mx-1">•</span>
+                                    <i class="fa-solid fa-earth-americas text-[10px]"></i>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-1">
+                            <button onclick="openModal()" class="text-gray-500 hover:text-linkedin-blue hover:bg-gray-100 p-2 rounded-full transition text-xs flex items-center space-x-1">
+                                <i class="fa-solid fa-pen"></i>
+                                <span class="hidden sm:inline font-semibold">Editar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="px-4 pb-3 text-xs sm:text-sm text-gray-800 leading-relaxed font-sans">
+                        ${formattedText}
+                    </div>
+
+                    ${bannerHTML}
+
+                    <div class="px-4 py-2 border-b border-gray-100 flex justify-between items-center text-xs text-gray-500">
+                        <div class="flex items-center space-x-1">
+                            <div class="flex -space-x-1">
+                                <span class="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center text-white text-[8px]">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                </span>
+                                <span class="w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center text-white text-[8px]">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </span>
+                                <span class="w-4 h-4 bg-emerald-600 rounded-full flex items-center justify-center text-white text-[8px]">
+                                    <i class="fa-solid fa-award"></i>
+                                </span>
+                            </div>
+                            <span id="likeCounter" class="ml-1 font-bold text-gray-700">${likeCount}</span>
+                        </div>
+                        <div class="space-x-2 text-[11px]">
+                            <span class="hover:underline cursor-pointer"><span id="commentCount">${commentsList.length}</span> comentários</span>
+                            <span>•</span>
+                            <span class="hover:underline cursor-pointer">14 compartilhamentos</span>
+                        </div>
+                    </div>
+
+                    <div class="px-2 py-1 flex justify-around items-center text-xs font-semibold text-gray-600 border-b border-gray-100">
+                        <button id="likeBtn" onclick="toggleLike()" class="flex items-center justify-center space-x-1.5 p-2.5 hover:bg-gray-100 rounded-lg flex-1 transition">
+                            <i class="fa-regular fa-thumbs-up text-lg"></i>
+                            <span>Gostei</span>
+                        </button>
+                        <button class="flex items-center justify-center space-x-1.5 p-2.5 hover:bg-gray-100 rounded-lg flex-1 transition">
+                            <i class="fa-regular fa-comment text-lg"></i>
+                            <span>Comentar</span>
+                        </button>
+                        <button class="flex items-center justify-center space-x-1.5 p-2.5 hover:bg-gray-100 rounded-lg flex-1 transition">
+                            <i class="fa-solid fa-retweet text-lg"></i>
+                            <span>Compartilhar</span>
+                        </button>
+                        <button class="flex items-center justify-center space-x-1.5 p-2.5 hover:bg-gray-100 rounded-lg flex-1 transition">
+                            <i class="fa-solid fa-paper-plane text-lg"></i>
+                            <span>Enviar</span>
+                        </button>
+                    </div>
+
+                    <div class="p-3 flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-blue-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                            VC
+                        </div>
+                        <input type="text" placeholder="Adicione um comentário..." class="flex-grow bg-gray-50 border border-gray-300 rounded-full px-4 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-gray-400">
+                    </div>
+                </article>
+            `;
+        }
+
+        function openModal() {
+            document.getElementById('postModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('postModal').classList.add('hidden');
+        }
+
+        function toggleLike() {
+            isLiked = !isLiked;
+            const btn = document.getElementById('likeBtn');
+            const counter = document.getElementById('likeCounter');
+            
+            if (isLiked) {
+                likeCount++;
+                btn.innerHTML = '<i class="fa-solid fa-thumbs-up text-linkedin-blue text-lg animate-pop"></i><span class="text-linkedin-blue">Gostei</span>';
+            } else {
+                likeCount--;
+                btn.innerHTML = '<i class="fa-regular fa-thumbs-up text-lg"></i><span>Gostei</span>';
+            }
+            counter.innerText = likeCount;
+        }
+
+        function addEmoji(emoji) {
+            const textarea = document.getElementById('postContent');
+            textarea.value += emoji;
+            textarea.focus();
+        }
+
+        function addHashtag(tag) {
+            const textarea = document.getElementById('postContent');
+            textarea.value += ' ' + tag;
+            textarea.focus();
+        }
+    </script>
+</body>
+</html>
